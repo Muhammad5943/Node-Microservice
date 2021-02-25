@@ -24,7 +24,7 @@ app.post("/posts", async (req, res) => {
         id, title
     }
 
-    await axios.post('http://localhost:4005/events', {
+    await axios.post('http://172.17.0.3:4005/events', {
         type: 'PostCreated',
         data: {
             id, title
@@ -41,5 +41,5 @@ app.post('/events', (req, res) => {
 })
 
 app.listen(port, () => {
-    console.log(`Server running on port https://localhost:${port} 🔥`);
+    console.log(`Server running on port https://172.17.0.4:${port} 🔥`);
 });

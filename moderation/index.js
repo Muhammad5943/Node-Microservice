@@ -6,17 +6,13 @@ const axios = require('axios')
 const app = express()
 app.use(bodyParser.json())
 
-app.get("/events", (req, res) => {
-  
-})
-
 app.post("/events", async (req, res) => {
     const { type, data } = req.body
 
     if (type === 'CommentCreated') {
         const status = data.content.includes('orange') ? 'rejected' : 'approved'
         
-        await axios.post(`http://localhost:4005/events`, {
+        await axios.post(`http://172.17.0.3:4005/events`, {
                 type: 'CommentModerated',
                 data: {
                     id: data.id,
@@ -30,5 +26,5 @@ app.post("/events", async (req, res) => {
 })
 
 app.listen(port, () => {
-    console.log(`Server running on port http://localhost:${port} 🔥`)
+    console.log(`Server running on port http:///172.17.0.6:${port} 🔥`)
 })

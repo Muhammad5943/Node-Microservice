@@ -1,10 +1,10 @@
-const express = require("express")
-const bodyParser = require("body-parser");
-const cors = require('cors');
+const express = require('express')
+const bodyParser = require('body-parser')
+const cors = require('cors')
 const axios = require('axios')
 const port = process.env.PORT || 4002;
 
-const app = express();
+const app = express()
 app.use(bodyParser.json())
 app.use(cors())
 
@@ -31,7 +31,7 @@ const handleEvents = (type, data) => {
     
         const post = posts[postId];
         const comment = post.comments.find(comment => {
-        return comment.id === id;
+            return comment.id === id;
         });
     
         comment.status = status;
@@ -54,11 +54,10 @@ app.post("/events", (req, res) => {
     
 });
 
+app.listen(port, async () => {
+    console.log(`Server running on port http://172.17.0.7:${port} 🔥`)
 
-app.listen(port,async () => {
-    console.log(`Server running on port http://localhost:${port} 🔥`)
-
-    const res = await axios.get('http://localhost:4005/events')
+    const res = await axios.get('http://172.17.0.3:4005/events')
 
     for (let event of res.data) {
         console.log(`Processing event: ${event.type}`)
@@ -66,3 +65,5 @@ app.listen(port,async () => {
         handleEvents(event.type, event.data)
     }
 });
+
+

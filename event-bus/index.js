@@ -12,15 +12,10 @@ app.post('/events', (req, res) => {
 
     events.push(event)
 
-    axios.post('http://localhost:4000/events', event)
-    axios.post('http://localhost:4001/events', event)
-    axios.post('http://localhost:4002/events', event)
-    axios.post('http://localhost:4003/events', event)
-
-    // if (it is not 1 am) {
-    //     axios.post('http://192.168.11.130/events', event)
-    //     axios.post('http://192.168.11.130/events', event)
-    // }
+    axios.post('http://172.17.0.4:4000/events', event)
+    axios.post('http://172.17.0.5:4001/events', event)
+    axios.post('http://172.17.0.7:4002/events', event)
+    axios.post('http://172.17.0.6:4003/events', event)
 
     res.send({
         status: 'OK'
@@ -34,5 +29,5 @@ app.get('/events', (req, res) => {
 const port = process.env.PORT || 4005;
 
 app.listen(port, () => {
-    console.log(`Server running on port http://localhost:${port} 🔥`)
+    console.log(`Server running on port http://172.17.0.3:${port} 🔥`)
 });
