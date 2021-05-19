@@ -1,36 +1,36 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: event-bus-depl
+  name: moderation-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: event-bus
+      app: moderation
   template:
     metadata:
       labels:
-        app: event-bus
+        app: moderation
     spec:
       containers:
-        - name: event-bus
-          image: muhammadajiputramp98/event-bus:0.0.1
+        - name: moderation
+          image: muhammadajiputramp98/moderation:0.0.1
 ---
 
 # https://kubernetes.io/docs/concepts/services-networking/service/
 apiVersion: v1
 kind: Service
 metadata:
-  name: event-bus-srv
+  name: moderation-srv
 spec:
   selector:
-    app: event-bus
+    app: moderation
   type: ClusterIP
   ports:
-    - name: event-bus
+    - name: moderation
       protocol: TCP
-      port: 4005
-      targetPort: 4005
+      port: 4003
+      targetPort: 4003
 ---
 
 

@@ -27,12 +27,14 @@ app.post("/posts", async (req, res) => {
     await axios.post('http://event-bus-srv:4005/events', {
         type: 'PostCreated',
         data: {
-            id, title
+            id,
+            title
         }
     })
 
+
     res.status(201).send(posts[id])
-});
+})
 
 app.post('/events', (req, res) => {
     console.log('Event Received:', req.body.type);
@@ -42,4 +44,4 @@ app.post('/events', (req, res) => {
 
 app.listen(port, () => {
     console.log(`Server running on port https://172.17.0.4:${port} 🔥`);
-});
+})

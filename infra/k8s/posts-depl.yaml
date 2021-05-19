@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: posts
-          image: muhammadajiputramp98/posts:0.0.1
+          image: muhammadajiputramp98/posts:0.0.5
           ports:
             - name: posts
               containerPort: 80
@@ -34,9 +34,10 @@ spec:
   selector:
     app: posts
   ports:
-  - name: posts
-    protocol: TCP
-    port: 4000
-    targetPort: 4000
+    - name: posts
+      protocol: TCP
+      port: 4000
+      targetPort: 4000
+
 
 
